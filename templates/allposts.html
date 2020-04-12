@@ -1,0 +1,77 @@
+{% include 'head.html' %}
+
+<body>
+
+    <div class="container">
+
+        {% include 'jumbotron.html' %}
+
+        {% if roleUser == "Admin" or roleUser == "Manager "%}
+        <a href="{{ url_for('admin') }}"><button id="backHome" type="button" class="btn-success btn-sm">Back
+                Home</button></a>
+        <a href="{{ url_for('homepage') }}"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
+        <a href="{{ url_for('newpost') }}"><button id="" type="button" class="btn-success btn-sm">Add Post</button></a>
+        <a href="{{ url_for('notified') }}"><button id="" type="button" class="btn-success btn-sm">Granted</button></a>
+        <br>
+
+        {% else %}
+        <a href="{{url_for('posts')}}"><button style="float:right; margin-right:5px;" id="" type="button"
+                class="btn-success btn-sm">Back Home</button></a>
+        <a href="{{ url_for('notified') }}"><button id="" type="button" class="btn-success btn-sm">Granted</button></a>
+        <a href="{{ url_for('all') }}"><button id="" type="button" class="btn-success btn-sm">Applicants</button></a>
+        <br>
+        {% endif %}
+
+        <h3 style="text-align: center;">ALL POSTS</h3>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+
+        {% for category, message in messages %}
+        <div class="{{ category }}"> {{ message }} </div>
+        {% endfor %}
+
+        {% endif %}
+        {% endwith %}
+
+        <main id="posts-content" class="row mt-4">
+            <section class="col-sm-10 offset-sm-1 list-group">
+
+                {% if allPostsAJAXs %}
+                {% for allPostsAJAX in allPostsAJAXs %}
+                <article class="list-group-item" style="margin-bottom: 5px;">
+                    <h5>
+                        {{ allPostsAJAX.title }}
+                    </h5>
+                    <p>
+                        {{ allPostsAJAX.content }}
+                    </p>
+                </article>
+
+                {% if roleUser == "Admin" or roleUser == "Manager "%}
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-sm-11 offset-sm-1 text-right">
+                        <small style="margin:0px 50px 10px 0px;">{{ allPostsAJAX.posttime }} :
+                            {{ allPostsAJAX.postcreator }}</small>
+                        <a href="/postEdit/{{ allPostsAJAX.postid }}"> <button class="btn btn-warning"
+                                id="edit-post">Edit</button></a>
+                        <a href="/postDelete/{{ allPostsAJAX.postid }}"> <button class="btn btn-danger"
+                                id="remove-post">Delete</button></a>
+                    </div>
+                </div>
+                {% else %}
+                <small style="margin-bottom: 10px;">{{ allPostsAJAX.posttime }} : {{ allPostsAJAX.postcreator }}</small>
+                {% endif %}
+
+                {% endfor %}
+                {% endif %}
+
+            </section>
+        </main>
+
+        {% include 'footer.html' %}
+    </div>
+
+</body>
+
+</html>

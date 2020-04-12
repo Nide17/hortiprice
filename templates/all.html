@@ -1,0 +1,211 @@
+{% include 'head.html' %}
+
+<body>
+
+    <div class="container">
+
+        {% include 'jumbotron.html' %}
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                <form method="GET" action="/searchAll" style="margin-left:0px">
+                    <div class="input-group">
+                        <input type="text" name="search_keyAll" class="form-control"
+                            placeholder="Search by name, phone, or ID here...." required>
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-6">
+
+                {% if roleUser == "Admin" or roleUser == "Manager "%}
+                <a href="{{ url_for('admin') }}"><button style="float:right; margin-right:5px;" id="backHome"
+                        type="button" class="btn-success btn-sm">Back Home</button></a>
+                <a href="{{ url_for('homepage') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Homepage</button></a>
+                <a href="{{ url_for('newpost') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Add Post</button></a>
+                <a href="{{ url_for('posts') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Posts</button></a>
+                <a href="{{ url_for('applicant') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Add applicant</button></a>
+                <a href="{{ url_for('all') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Applicants</button></a>
+                <br>
+                {% else %}
+                <a href="{{url_for('posts')}}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Back Home</button></a>
+                <a href="{{ url_for('homepage') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Homepage</button></a>
+                <a href="{{ url_for('all') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Applicants</button></a>
+                <a href="{{ url_for('posts') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Posts</button></a>
+                <br>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <h3 style="text-align: center;">HORTICULTURE DATABASE</h3>
+
+        <!--SEARCH-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        <div class="msgOK"> {{ messages[0] }} </div>
+
+        {% endif %}
+        {% endwith %}
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="table-responsive">
+
+                    {% if SearchResultsAs %}
+                    <table class="table table-sm w-auto">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>FORM CODE</th>
+                                <th>NAME</th>
+                                <th>APPLICANT CATEGORY</th>
+                                <th>BUSINESS CATEGORY</th>
+                                <th>DISTRICT</th>
+                                <th>ID NUMBER</th>
+                                <th>PHONE</th>
+                                <th>COMMODITY</th>
+                                <th>COST</th>
+                                <th>MARKS</th>
+                                <th>SERVICE PROVIDER</th>
+                                <th colspan="2">ACTION</th>
+                            </tr>
+                        </thead>
+
+                        {% for SearchResultsA in SearchResultsAs %}
+                        <tbody>
+                            <tr>
+                                <td> <strong style="color:rgb(192, 233, 201);">
+                                        {{ SearchResultsA.formcode }}</strong>
+                                </td>
+                                <td>
+                                    {{ SearchResultsA.appname }} </td>
+                                <td>
+                                    {{ SearchResultsA.appcatname }} </td>
+                                <td>
+                                    {{ SearchResultsA.bcatname }} </td>
+                                <td>
+                                    {{ SearchResultsA.bdistrict }} </td>
+                                <td>
+                                    {{ SearchResultsA.idnbr }} </td>
+                                <td>
+                                    {{ SearchResultsA.phone }} </td>
+                                <td>
+                                    {{ SearchResultsA.crop1 }} </td>
+                                <td>
+                                    {{ SearchResultsA.totalcost }} </td>
+
+                                {% if SearchResultsA['marks'] < 55 %}
+                                <td> <b style="color:red;">{{ SearchResultsA.marks }}</b></td>
+                                {% else %}
+                                <td><b style="color:green;">{{ SearchResultsA.marks }}</b></td>
+                                {% endif %}
+                                <td> <strong>{{ SearchResultsA.spname }}</strong></td>
+                                <td>
+                                    <a class="edit_btn" href="/appEdit/{{ SearchResultsA.appno }}">Edit </a>
+                                </td>
+                                <td>
+                                    <a class="del_btn" href="/appDelete/{{ SearchResultsA.appno }}">Delete </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+
+                    </table>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+
+        <div id="myTable" class="row">
+            <div class="col-sm-12">
+                <div class="table-responsive">
+
+                    {% if alls %}
+                    <table class="table table-sm w-auto">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>FORM CODE</th>
+                                <th>NAME</th>
+                                <th>APPLICANT CATEGORY</th>
+                                <th>BUSINESS CATEGORY</th>
+                                <th>DISTRICT</th>
+                                <th>ID NUMBER</th>
+                                <th>PHONE</th>
+                                <th>COMMODITY</th>
+                                <th>COST</th>
+                                <th>MARKS</th>
+                                <th>SERVICE PROVIDER</th>
+                                <th colspan="2">ACTION</th>
+
+                            </tr>
+                        </thead>
+
+                        {% for all in alls %}
+                        <tbody>
+                            <tr>
+                                <td> <strong style="color:rgb(192, 233, 201);"> {{ all['formcode'] }}</strong>
+                                </td>
+                                <td>
+                                    {{ all['appname'] }} </td>
+                                <td>
+                                    {{ all['appcatname'] }} </td>
+                                <td>
+                                    {{ all['bcatname'] }} </td>
+                                <td>
+                                    {{ all['bdistrict'] }} </td>
+                                <td>
+                                    {{ all['idnbr'] }} </td>
+                                <td>
+                                    {{ all['phone'] }} </td>
+                                <td>
+                                    {{ all['crop1'] }} </td>
+                                <td>
+                                    {{ all['totalcost'] }} </td>
+
+                                {% if all['marks'] < 55 %}
+                                <td> <b style="color:red;">{{ all['marks'] }}</b></td>
+                                {% else %}
+                                <td><b style="color:green;">{{ all['marks'] }}</b></td>
+                                {% endif %}
+                                <td> <strong>{{ all['spname'] }}</strong></td>
+                                <td>
+                                    <a class="edit_btn" href="/appEdit/{{ all['appno'] }}">Edit </a>
+                                </td>
+                                <td>
+                                    <a class="del_btn" href="/appDelete/{{ all['appno'] }}">Delete </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+
+                    </table>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+        {% include 'footer.html' %}
+    </div>
+
+</body>
+
+</html>

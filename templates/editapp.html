@@ -1,0 +1,396 @@
+{% include "head.html" %}
+
+<body>
+
+    <div class="container">
+        {% include "jumbotron.html" %}
+
+        <div class="row">
+            <a href="{{ url_for('admin') }}"><button id="backHome" type="button" class="btn-success btn-sm">Back
+                    Home</button></a>
+            <a href="{{ url_for('all') }}"><button id="backHome" type="button" class="btn-success btn-sm">Applicants
+                </button></a>
+            <a href="{{ url_for('notified') }}"><button id="backHome" type="button" class="btn-success btn-sm">Notified
+                </button></a>
+                <a href="{{ url_for('posts') }}"><button id="backHome" type="button" class="btn-success btn-sm">Posts
+                </button></a>    
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+
+        {% for category, message in messages %}
+        <div class="{{ category }}"> {{ message }} </div>
+        {% endfor %}
+
+        {% endif %}
+        {% endwith %}
+
+        {% if appEditResults %}
+        <form action="/appUpdate" method="POST" id="editNewForm">
+            <legend style="color: #4525ef;">
+                <h4 style="text-align:center">UPDATE APPLICANT<br /><br /></h4>
+            </legend>
+
+            <input type="hidden" name="appId" value="{{ appEditResults.appno }}" required>
+
+            <div class="form-group row">
+                <Label for="formCode" class="col-sm-3 col-form-label">Form Code</Label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="fCode" id="" value="{{ appEditResults.formcode }}"
+                        required>
+                    <small id="code" class="form-text text-muted">Form code must be unique</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <Label for="appName" class="col-sm-3 col-form-label">Name</Label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="aName" id="" value="{{ appEditResults.appname }}"
+                        required>
+                </div>
+            </div>
+
+            {% if appEditResults.appcatid == 1 %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="type">Type</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="type" id="">
+                        <option value="{{ appEditResults.appcatid }}" selected="selected"> <b>ASSOCIATION</b></option>
+                        <option value="2"><b>LIMITED COMPANY</b></option>
+                        <option value="3"><b>COOPERATIVE</b></option>
+                        <option value="4"><b>OTHER CATEGORY</b></option>
+                        <option value="5"><b>INDIVIDUAL</b></option>
+                    </select>
+                </div>
+            </div>
+
+            {% elif appEditResults.appcatid == 2 %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="type">Type</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="type" id="">
+                        <option value="1"> <b>ASSOCIATION</b></option>
+                        <option value="{{ appEditResults.appcatid }}" selected="selected"><b>LIMITED COMPANY</b>
+                        </option>
+                        <option value="3"><b>COOPERATIVE</b></option>
+                        <option value="4"><b>OTHER CATEGORY</b></option>
+                        <option value="5"><b>INDIVIDUAL</b></option>
+                    </select>
+                </div>
+            </div>
+
+            {% elif appEditResults.appcatid == 3 %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="type">Type</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="type" id="">
+                        <option value="1" selected="selected"> <b>ASSOCIATION</b></option>
+                        <option value="2"><b>LIMITED COMPANY</b></option>
+                        <option value="{{ appEditResults.appcatid }}" selected="selected"><b>COOPERATIVE</b></option>
+                        <option value="4"><b>OTHER CATEGORY</b></option>
+                        <option value="5"><b>INDIVIDUAL</b></option>
+                    </select>
+                </div>
+            </div>
+
+            {% elif appEditResults.appcatid == 4 %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="type">Type</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="type" id="">
+                        <option value="1"> <b>ASSOCIATION</b></option>
+                        <option value="2"><b>LIMITED COMPANY</b></option>
+                        <option value="3"><b>COOPERATIVE</b></option>
+                        <option value="{{ appEditResults.appcatid }}" selected="selected"><b>OTHER CATEGORY</b></option>
+                        <option value="5"><b>INDIVIDUAL</b></option>
+                    </select>
+                </div>
+            </div>
+
+            {% else %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="type">Type</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="type" id="">
+                        <option value="1"> <b>ASSOCIATION</b></option>
+                        <option value="2"><b>LIMITED COMPANY</b></option>
+                        <option value="3"><b>COOPERATIVE</b></option>
+                        <option value="4"><b>OTHER CATEGORY</b></option>
+                        <option value="{{ appEditResults.appcatid }}" selected="selected"><b>INDIVIDUAL</b></option>
+                    </select>
+                </div>
+            </div>
+            {% endif %}
+
+
+            {% if appEditResults.bcatid == 1 %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="category">Category</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="category" id="">
+
+                        <option value="{{ appEditResults.bcatid }}" selected="selected"> <b>PRIMARY</b></option>
+                        <option value="2"><b>PLANTING</b></option>
+                        <option value="3"><b>PACKAGING</b></option>
+                        <option value="4"><b>PRIMARY & PLANTING</b></option>
+                        <option value="5"><b>SEEDS PROPAGATION</b></option>
+                        <option value="6"><b>NURSERY BED</b></option>
+                    </select>
+                </div>
+            </div>
+
+            {% elif appEditResults.bcatid == 2 %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="category">Category</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="category" id="">
+
+                        <option value="1"> <b>PRIMARY</b></option>
+                        <option value="{{ appEditResults.bcatid }}" selected="selected"><b>PLANTING</b></option>
+                        <option value="3"><b>PACKAGING</b></option>
+                        <option value="4"><b>PRIMARY & PLANTING</b></option>
+                        <option value="5"><b>SEEDS PROPAGATION</b></option>
+                        <option value="6"><b>NURSERY BED</b></option>
+                    </select>
+                </div>
+            </div>
+
+            {% elif appEditResults.bcatid == 3 %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="category">Category</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="category" id="">
+
+                        <option value="1"> <b>PRIMARY</b></option>
+                        <option value="2"><b>PLANTING</b></option>
+                        <option value="{{ appEditResults.bcatid }}" selected="selected"><b>PACKAGING</b></option>
+                        <option value="4"><b>PRIMARY & PLANTING</b></option>
+                        <option value="5"><b>SEEDS PROPAGATION</b></option>
+                        <option value="6"><b>NURSERY BED</b></option>
+                    </select>
+                </div>
+            </div>
+
+            {% elif appEditResults.bcatid == 4 %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="category">Category</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="category" id="">
+
+                        <option value="1"> <b>PRIMARY</b></option>
+                        <option value="2"><b>PLANTING</b></option>
+                        <option value="3"><b>PACKAGING</b></option>
+                        <option value="{{ appEditResults.bcatid }}" selected="selected"><b>PRIMARY & PLANTING</b>
+                        </option>
+                        <option value="5"><b>SEEDS PROPAGATION</b></option>
+                        <option value="6"><b>NURSERY BED</b></option>
+                    </select>
+                </div>
+            </div>
+
+            {% elif appEditResults.bcatid == 5 %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="category">Category</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="category" id="">
+
+                        <option value="1"> <b>PRIMARY</b></option>
+                        <option value="2"><b>PLANTING</b></option>
+                        <option value="3"><b>PACKAGING</b></option>
+                        <option value="4"><b>PRIMARY & PLANTING</b></option>
+                        <option value="{{ appEditResults.bcatid }}" selected="selected"><b>SEEDS PROPAGATION</b>
+                        </option>
+                        <option value="6"><b>NURSERY BED</b></option>
+                    </select>
+                </div>
+            </div>
+
+            {% else %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="category">Category</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="category" id="">
+
+                        <option value="1"> <b>PRIMARY</b></option>
+                        <option value="2"><b>PLANTING</b></option>
+                        <option value="3"><b>PACKAGING</b></option>
+                        <option value="4"><b>PRIMARY & PLANTING</b></option>
+                        <option value="5"><b>SEEDS PROPAGATION</b></option>
+                        <option value="{{ appEditResults.bcatid }}" selected="selected"><b>NURSERY BED</b></option>
+                    </select>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="form-group row">
+                <Label class="col-sm-3 col-form-label">ID</Label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="idNbr" id="" value="{{ appEditResults.idnbr }}"
+                        required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <Label class="col-sm-3 col-form-label">Phone</Label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="phone" id="" value="{{ appEditResults.phone }}"
+                        required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <Label class="col-sm-3 col-form-label">Total Cost</Label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="cost" id="" value="{{ appEditResults.totalcost }}"
+                        required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <Label class="col-sm-3 col-form-label">Marks</Label>
+                <div class="col-sm-6">
+                    <input type="number" step="0.1" min="0" max="100" class="form-control" name="marks" id="marks-input"
+                        value="{{ appEditResults.marks }}" required>
+                </div>
+            </div>
+
+            {% if appEditResults.spid == 1 %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="sp">Service Provider</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="sp" id="sp-select">
+                        <option value="0"> <b>Failed</b></option>
+                        <option value="{{ appEditResults.spid }}" selected="selected"><b>ADC</b></option>
+                        <option value="2"><b>SORWAFFA</b></option>
+                    </select>
+                </div>
+            </div>
+
+            {% elif appEditResults.spid == 2 %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="sp">Service Provider</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="sp" id="sp-select">
+                        <option value="0"> <b>Failed</b></option>
+                        <option value="1"><b>ADC</b></option>
+                        <option value="{{ appEditResults.spid }}" selected="selected"><b>SORWAFFA</b></option>
+                    </select>
+                </div>
+            </div>
+
+            {% else %}
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="sp">Service Provider</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="sp" id="sp-select">
+                        <option value="{{ appEditResults.spid }}" selected="selected"> <b>Failed</b></option>
+                        <option value="1"><b>ADC</b></option>
+                        <option value="2"><b>SORWAFFA</b></option>
+                    </select>
+                </div>
+            </div>
+            {% endif %}
+            <div class="input-group">
+                <button type="submit" name="save" id="save-btn" class="btn-success">Update</button>
+            </div>
+
+        </form>
+
+        {% else %}
+
+        <form action="/applicant" method="POST" id="editNewForm">
+            <legend style="color: #4525ef;">
+                <h4 style="text-align:center">NEW APPLICANT<br /><br /></h4>
+            </legend>
+
+            <input type="hidden" name="appId" value="">
+
+            <div class="form-group row">
+                <Label for="formCode" class="col-sm-3 col-form-label">Form Code</Label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="fCode" id="" value="" required>
+                    <small id="code" class="form-text text-muted">Form code must be unique</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <Label for="appName" class="col-sm-3 col-form-label">Name</Label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="aName" id="" value="" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="type">Type</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="type" id="">
+                        <option value="1" selected="selected"> <b>ASSOCIATION</b></option>
+                        <option value="2"><b>LIMITED COMPANY</b></option>
+                        <option value="3"><b>COOPERATIVE</b></option>
+                        <option value="4"><b>OTHER CATEGORY</b></option>
+                        <option value="5"><b>INDIVIDUAL</b></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="category">Category</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="category" id="">
+
+                        <option value="1" selected="selected"> <b>PRIMARY</b></option>
+                        <option value="2"><b>PLANTING</b></option>
+                        <option value="3"><b>PACKAGING</b></option>
+                        <option value="4"><b>PRIMARY & PLANTING</b></option>
+                        <option value="5"><b>SEEDS PROPAGATION</b></option>
+                        <option value="6"><b>NURSERY BED</b></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <Label class="col-sm-3 col-form-label">ID</Label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="idNbr" id="" value="" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <Label class="col-sm-3 col-form-label">Phone</Label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="phone" id="" value="" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <Label class="col-sm-3 col-form-label">Total Cost</Label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="cost" id="" value="" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <Label class="col-sm-3 col-form-label">Marks</Label>
+                <div class="col-sm-6">
+                    <input type="number" step="0.1" min="0" max="100" class="form-control" name="marks" id="marks-input"
+                        value="" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="sp">Service Provider</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="sp" id="sp-select">
+                        <option value="0"> <b>Failed</b></option>
+                        <option value="1" selected="selected"><b>ADC</b></option>
+                        <option value="2"><b>SORWAFFA</b></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <button type="submit" name="save" id="save-btn" class="btn-success">Create</button>
+
+            </div>
+
+        </form>
+        {% endif %}
+
+        {% include 'footer.html' %}
+    </div>
+
+</body>
+
+</html>

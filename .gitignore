@@ -1,0 +1,10 @@
+.pylintrc
+.vscode/
+How to deploy.txt
+__pycache__/
+convertBase64.py
+dbGenerated.py
+flask_session/
+migrations/
+backup/
+app.py

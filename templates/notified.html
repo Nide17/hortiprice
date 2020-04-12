@@ -1,0 +1,215 @@
+{% include 'head.html' %}
+
+<body>
+
+    <div class="container">
+        {% include 'jumbotron.html' %}
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                <form method="GET" action="/search" style="margin-left:0px">
+                    <div class="input-group">
+                        <input type="text" name="search_key" class="form-control"
+                            placeholder="Search by name, phone, or ID here...." required>
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-6">
+
+                {% if roleUser == "Admin" or roleUser == "Manager "%}
+                <a href="{{ url_for('admin') }}"><button style="float:right; margin-right:5px;" id="backHome"
+                        type="button" class="btn-success btn-sm">Back Home</button></a>
+                <a href="{{ url_for('homepage') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Homepage</button></a>
+                <a href="{{ url_for('newpost') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Add Post</button></a>
+                <a href="{{ url_for('posts') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Posts</button></a>
+                <a href="{{ url_for('applicant') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Add applicant</button></a>
+                <a href="{{ url_for('all') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Applicants</button></a>
+                <br>
+                {% else %}
+                <a href="{{url_for('posts')}}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Back Home</button></a>
+                <a href="{{ url_for('homepage') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Homepage</button></a>
+                <a href="{{ url_for('all') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Applicants</button></a>
+                <a href="{{ url_for('posts') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Posts</button></a>
+                <br>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <h3 style="text-align: center;">PRICE GRANT BENEFICIARIES</h3>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        {% for message in messages %}
+        <div class="msgOK"> {{ message }} </div>
+        {% endfor %}
+
+        {% endif %}
+        {% endwith %}
+        <!--SEARCH-->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="table-responsive">
+
+                    {% if notiSearchResults %}
+                    <table class="table table-sm w-auto">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>NO</th>
+                                <th>NAME</th>
+                                <th>APPLICANT CATEGORY</th>
+                                <th>BUSINESS CATEGORY</th>
+                                <th>PROVINCE</th>
+                                <th>DISTRICT</th>
+                                <th>SECTOR</th>
+                                <th>SEX</th>
+                                <th>PHONE</th>
+                                <th>COMMIDITY</th>
+                                <th>LOAN</th>
+                                <th>GRANT</th>
+                                <th>FINANCIAL INSTITUTION</th>
+                            </tr>
+                        </thead>
+
+                        {% for notiSearchResult in notiSearchResults %}
+                        <tbody>
+                            <tr>
+                                <td> <strong style="color:rgb(192, 233, 201);"> {{ notiSearchResult['notid'] }}
+                                    </strong>
+                                </td>
+                                <td>
+                                    {{ notiSearchResult['nname'] }} </td>
+                                <td>
+                                    {{ notiSearchResult['appcatname'] }} </td>
+                                <td>
+                                    {{ notiSearchResult['bcatname'] }} </td>
+                                <td>
+                                    {{ notiSearchResult['province'] }} </td>
+                                <td>
+                                    {{ notiSearchResult['district'] }} </td>
+                                <td>
+                                    {{ notiSearchResult['sector'] }} </td>
+                                <td>
+                                    {{ notiSearchResult['sex'] }} </td>
+                                <td>
+                                    {{ notiSearchResult['phone'] }} </td>
+                                <td>
+                                    {{ notiSearchResult['commodity'] }} </td>
+                                <td>
+                                    {{ notiSearchResult['loan'] }} </td>
+
+                                <td> <strong>{{ '{0:,}'.format(notiSearchResult['granted']) }} </strong></td>
+                                <td>
+                                    {{ notiSearchResult['pfi'] }} </td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+
+                    </table>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <!--displaying 50 database data-->
+
+                <div class="table-responsive">
+
+                    {% if notifiedAlls %}
+                    <table id="tableData" class="table table-sm w-auto">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>NO</th>
+                                <th>NAME</th>
+                                <th>APPLICANT CATEGORY</th>
+                                <th>BUSINESS CATEGORY</th>
+                                <th>DISTRICT</th>
+                                <th>SECTOR</th>
+                                <th>SEX</th>
+                                <th>PHONE</th>
+                                <th>COMMIDITY</th>
+                                <th>LOAN</th>
+                                <th>GRANT</th>
+                                <th>FINANCIAL INSTITUTION</th>
+                            </tr>
+                        </thead>
+
+                        {% for notifiedAll in notifiedAlls %}
+                        <tbody>
+                            <tr>
+                                <td> <strong style="color:rgb(192, 233, 201);"> {{ notifiedAll['notid'] }}
+                                    </strong>
+                                </td>
+                                <td>
+                                    {{ notifiedAll['nname'] }} </td>
+                                <td>
+                                    {{ notifiedAll['appcatname'] }} </td>
+                                <td>
+                                    {{ notifiedAll['bcatname'] }} </td>
+                                <td>
+                                    {{ notifiedAll['district'] }} </td>
+                                <td>
+                                    {{ notifiedAll['sector'] }} </td>
+                                <td>
+                                    {{ notifiedAll['sex'] }} </td>
+                                <td>
+                                    {{ notifiedAll['phone'] }} </td>
+                                <td>
+                                    {{ notifiedAll['commodity'] }} </td>
+                                <td>
+                                    {{ '{0:,}'.format(notifiedAll['loan']) }} </td>
+
+                                <td> <strong>{{ '{0:,}'.format(notifiedAll['granted']) }} </strong></td>
+                                <td>
+                                    {{ notifiedAll['pfi'] }} </td>
+                            </tr>
+                            {% endfor %}
+                            <tr class="text-center table-warning font-weight-bold text-info">
+                                <td colspan="10">
+                                    <h6>TOTAL GRANT</h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        {% if notiAllSums %}
+                                        {{ '{0:,}'.format(notiAllSums[0]) }}
+                                        {% endif %}
+                                    </h6>
+                                </td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+        {% include 'footer.html'%}
+    </div>
+
+</body>
+
+</html>
