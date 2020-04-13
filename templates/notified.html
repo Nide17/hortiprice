@@ -23,7 +23,7 @@
 
             <div class="col-sm-6">
 
-                {% if roleUser == "Admin" or roleUser == "Manager "%}
+                {% if session.role == "Admin" or session.role == "Manager" %}
                 <a href="{{ url_for('admin') }}"><button style="float:right; margin-right:5px;" id="backHome"
                         type="button" class="btn-success btn-sm">Back Home</button></a>
                 <a href="{{ url_for('homepage') }}"><button style="float:right; margin-right:5px;" id="" type="button"
@@ -32,8 +32,6 @@
                         class="btn-success btn-sm">Add Post</button></a>
                 <a href="{{ url_for('posts') }}"><button style="float:right; margin-right:5px;" id="" type="button"
                         class="btn-success btn-sm">Posts</button></a>
-                <a href="{{ url_for('applicant') }}"><button style="float:right; margin-right:5px;" id="" type="button"
-                        class="btn-success btn-sm">Add applicant</button></a>
                 <a href="{{ url_for('all') }}"><button style="float:right; margin-right:5px;" id="" type="button"
                         class="btn-success btn-sm">Applicants</button></a>
                 <br>

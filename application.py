@@ -342,7 +342,6 @@ def all():
 
 ############# new applicant ##############
 
-
 @app.route('/applicant', methods=["GET", "POST"])
 def applicant():
     if not session:

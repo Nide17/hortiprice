@@ -6,7 +6,7 @@
 
         {% include 'jumbotron.html' %}
         <div class="row">
-            {% if roleUser == "Admin" or roleUser == "Manager "%}
+            {% if session.role == "Admin" or session.role == "Manager" %}
             <div class="col-sm-6">
                 <a href="{{url_for('homepage')}}"><button style="float:right; margin-right:5px;" id="backHome"
                         type="button" class="btn-success btn-sm">Back Home</button></a>
@@ -22,7 +22,7 @@
                         class="btn-success btn-sm">Applicants</button></a>
                 <br>
 
-                {% elif roleUser == "Employee" %}
+                {% elif session.role == "Employee" %}
                 <a href="{{url_for('homepage')}}"><button style="float:right; margin-right:5px;" id="" type="button"
                         class="btn-success btn-sm">Homepage</button></a>
                 <a href="{{url_for('posts')}}"><button style="float:right; margin-right:5px;" id="backHome"
@@ -38,75 +38,75 @@
                         class="btn-success btn-sm">Back Home</button></a>
                 <br>
                 {% endif %}
-
-
             </div>
-
-            <h3 style="color: #4525ef; text-align:center">Update your profile picture</h3> <br>
-
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-
-            {% for category, message in messages %}
-            <div class="{{ category }}"> {{ message }} </div>
-            {% endfor %}
-
-            {% endif %}
-            {% endwith %}
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <form method="POST" enctype="multipart/form-data" action="/updateUser" id="editNewForm">
-
-                        <input type="hidden" name="user_Id" value="{{ profileUpdateResults.u_id }}">
-
-                        <div class="form-group row">
-                            <Label for="formCode" class="col-sm-3 col-form-label">Username</Label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="uname" id="" disabled
-                                    value="{{ profileUpdateResults.username }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <Label for="appName" class="col-sm-3 col-form-label">Role</Label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="urole" id="" disabled
-                                    value="{{ profileUpdateResults.role }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <Label class="col-sm-3 col-form-label">Firstname</Label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="fname" id=""
-                                    value="{{ profileUpdateResults.firstname }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <Label class="col-sm-3 col-form-label">Lastname</Label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="lname" id=""
-                                    value="{{ profileUpdateResults.lastname }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <Label class="col-sm-3 col-form-label">Profile Picture</Label>
-                            <div style="color:crimson" class="col-sm-6">
-                                <td>
-                                    <input type="file" name="fileToUpload" id="fileToUpload">
-                                    <br>
-                                    <small>The image size must be less than 1MB</small>
-                                </td>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <button type="submit" name="updateP" class="btn btn-success">Update</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            {% include 'footer.html' %}
         </div>
+        <br><br>
+
+        <h3 style="color: #4525ef; text-align:center">Update your profile picture</h3> <br>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+
+        {% for category, message in messages %}
+        <div class="{{ category }}"> {{ message }} </div>
+        {% endfor %}
+
+        {% endif %}
+        {% endwith %}
+
+        <div class="row">
+            <div class="col-sm-12">
+                <form method="POST" enctype="multipart/form-data" action="/updateUser" id="editNewForm">
+
+                    <input type="hidden" name="user_Id" value="{{ profileUpdateResults.u_id }}">
+
+                    <div class="form-group row">
+                        <Label for="formCode" class="col-sm-3 col-form-label">Username</Label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="uname" id="" disabled
+                                value="{{ profileUpdateResults.username }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <Label for="appName" class="col-sm-3 col-form-label">Role</Label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="urole" id="" disabled
+                                value="{{ profileUpdateResults.role }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <Label class="col-sm-3 col-form-label">Firstname</Label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="fname" id=""
+                                value="{{ profileUpdateResults.firstname }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <Label class="col-sm-3 col-form-label">Lastname</Label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="lname" id=""
+                                value="{{ profileUpdateResults.lastname }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <Label class="col-sm-3 col-form-label">Profile Picture</Label>
+                        <div style="color:crimson" class="col-sm-6">
+                            <td>
+                                <input type="file" name="fileToUpload" id="fileToUpload">
+                                <br>
+                                <small>The image size must be less than 1MB</small>
+                            </td>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <button type="submit" name="updateP" class="btn btn-success">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% include 'footer.html' %}
+    </div>
 
 </body>
 

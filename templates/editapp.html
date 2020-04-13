@@ -12,8 +12,8 @@
                 </button></a>
             <a href="{{ url_for('notified') }}"><button id="backHome" type="button" class="btn-success btn-sm">Notified
                 </button></a>
-                <a href="{{ url_for('posts') }}"><button id="backHome" type="button" class="btn-success btn-sm">Posts
-                </button></a>    
+            <a href="{{ url_for('posts') }}"><button id="backHome" type="button" class="btn-success btn-sm">Posts
+                </button></a>
         </div>
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}

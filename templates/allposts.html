@@ -6,7 +6,7 @@
 
         {% include 'jumbotron.html' %}
 
-        {% if roleUser == "Admin" or roleUser == "Manager "%}
+        {% if session.role == "Admin" or session.role == "Manager" %}
         <a href="{{ url_for('admin') }}"><button id="backHome" type="button" class="btn-success btn-sm">Back
                 Home</button></a>
         <a href="{{ url_for('homepage') }}"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
@@ -48,7 +48,7 @@
                     </p>
                 </article>
 
-                {% if roleUser == "Admin" or roleUser == "Manager "%}
+                {% if roleUser == "Admin" or roleUser == "Manager" %}
                 <div class="row" style="margin-bottom: 5px;">
                     <div class="col-sm-11 offset-sm-1 text-right">
                         <small style="margin:0px 50px 10px 0px;">{{ allPostsAJAX.posttime }} :
