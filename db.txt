@@ -1,0 +1,40 @@
+Host:
+ec2-54-147-209-121.compute-1.amazonaws.com
+
+Database:
+d5a295ks1s7gc
+
+User:
+pbxmwdlzpyumuj
+
+Port:
+5432
+
+Password:
+2e0801353ba4f32459cfa951ff0928e35918334350ead8bdf81a46877f77e0b7
+
+URI:
+postgres://pbxmwdlzpyumuj:2e0801353ba4f32459cfa951ff0928e35918334350ead8bdf81a46877f77e0b7@ec2-54-147-209-121.compute-1.amazonaws.com:5432/d5a295ks1s7gc
+
+export DATABASE_URL="postgres://pbxmwdlzpyumuj:2e0801353ba4f32459cfa951ff0928e35918334350ead8bdf81a46877f77e0b7@ec2-54-147-209-121.compute-1.amazonaws.com:5432/d5a295ks1s7gc"
+
+Heroku CLI:
+heroku pg:psql postgresql-flat-01611 --app hortiprice
+
+exporting pg database to sql:
+
+pg_dump -U niyomwungeri -h localhost hort_db >> sqlfile.sql 
+
+pg:push
+
+pg:push pushes data from a local database into a remote Heroku Postgres database. 
+The command looks like this:
+
+heroku pg:push hort_db DATABASE_URL --app hortiprice
+
+This command takes the local database hort_db and pushes it to the database at DATABASE_URL on the app hortiprice. 
+To prevent accidental data overwrites and loss, the remote database must be empty. 
+You will be prompted to pg:reset a remote database that is not empty.
+
+Usage of the PGUSER and PGPASSWORD for your local database is also supported for pg:push, 
+just like for the pg:pull command.
