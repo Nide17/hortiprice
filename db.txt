@@ -1,3 +1,5 @@
+HEROKU
+-------
 Host:
 ec2-54-147-209-121.compute-1.amazonaws.com
 
@@ -33,7 +35,7 @@ The command looks like this:
 heroku pg:push hort_db DATABASE_URL --app hortiprice
 
 This command takes the local database hort_db and pushes it to the database at DATABASE_URL on the app hortiprice. 
-To prevent accidental data overwrites and loss, the remote database must be empty. 
+⚠🟨 To prevent accidental data overwrites and loss, the remote database must be empty. 
 You will be prompted to pg:reset a remote database that is not empty.
 
 Usage of the PGUSER and PGPASSWORD for your local database is also supported for pg:push, 

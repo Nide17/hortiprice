@@ -8,7 +8,7 @@
 
         <div class="row">
 
-            <div class="col-sm-10">
+            <div class="col-9">
                 {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
 
@@ -54,8 +54,8 @@
                         posts</a></button>
 
             </div>
-            <div class="col-sm-2">
-                <h3 style="text-align: center;">LINKS</h3>
+            <div class="col-3 post-links">
+                <h3>LINKS</h3>
                 <a href="{{url_for('applicant')}}"><button id="formUpdateNewAPP" type="button"
                         class="btn btn-secondary btn-sm" style="margin-left:20px;">New Applicant</button></a>
                 <br><br>
@@ -93,12 +93,12 @@
                             <tr>
                                 <th>FORM CODE</th>
                                 <th>NAME</th>
-                                <th>APPLICANT CATEGORY</th>
-                                <th>BUSINESS CATEGORY</th>
+                                <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                                <th class="onSmall-hide">BUSINESS CATEGORY</th>
                                 <th>DISTRICT</th>
-                                <th>SECTOR</th>
-                                <th>ID NUMBER</th>
-                                <th>PHONE</th>
+                                <th class="onSmall-hide">SECTOR</th>
+                                <th class="onSmall-hide">ID NUMBER</th>
+                                <th class="onSmall-hide">PHONE</th>
                                 <th>COMMODITY</th>
                                 <th>COST</th>
                                 <th>MARKS</th>
@@ -114,17 +114,17 @@
                                 </td>
                                 <td>
                                     {{ applicant['appname'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ applicant['appcatname'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ applicant['bcatname'] }}</td>
                                 <td>
                                     {{ applicant['bdistrict'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ applicant['bsector'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ applicant['idnbr'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ applicant['phone'] }} </td>
                                 <td>
                                     {{ applicant['crop1'] }} </td>
@@ -166,14 +166,14 @@
                             <tr>
                                 <th>NO</th>
                                 <th>NAME</th>
-                                <th>APPLICANT CATEGORY</th>
-                                <th>BUSINESS CATEGORY</th>
+                                <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                                <th class="onSmall-hide">BUSINESS CATEGORY</th>
                                 <th>DISTRICT</th>
-                                <th>SECTOR</th>
-                                <th>SEX</th>
-                                <th>PHONE</th>
+                                <th class="onSmall-hide">SECTOR</th>
+                                <th class="onSmall-hide">SEX</th>
+                                <th class="onSmall-hide">PHONE</th>
                                 <th>COMMIDITY</th>
-                                <th>LOAN</th>
+                                <th class="onSmall-hide">LOAN</th>
                                 <th>GRANT</th>
                                 <th>FINANCIAL INSTITUTION</th>
                             </tr>
@@ -185,21 +185,21 @@
                                 <td> <strong style="color:rgb(192, 233, 201);"> {{ notified['notid'] }} </strong></td>
                                 <td>
                                     {{ notified['nname'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notified['appcatname'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notified['bcatname'] }} </td>
                                 <td>
                                     {{ notified['district'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notified['sector'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notified['sex'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notified['phone'] }} </td>
                                 <td>
                                     {{ notified['commodity'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ '{0:,}'.format(notified['loan']) }} </td>
 
                                 <td> <strong>

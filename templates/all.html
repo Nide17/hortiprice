@@ -72,12 +72,12 @@
                             <tr>
                                 <th>FORM CODE</th>
                                 <th>NAME</th>
-                                <th>APPLICANT CATEGORY</th>
-                                <th>BUSINESS CATEGORY</th>
+                                <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                                <th class="onSmall-hide">BUSINESS CATEGORY</th>
                                 <th>DISTRICT</th>
-                                <th>ID NUMBER</th>
-                                <th>PHONE</th>
-                                <th>COMMODITY</th>
+                                <th class="onSmall-hide">ID NUMBER</th>
+                                <th class="onSmall-hide">PHONE</th>
+                                <th class="onSmall-hide">COMMODITY</th>
                                 <th>COST</th>
                                 <th>MARKS</th>
                                 <th>SERVICE PROVIDER</th>
@@ -93,15 +93,15 @@
                                 </td>
                                 <td>
                                     {{ SearchResultsA.appname }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ SearchResultsA.appcatname }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ SearchResultsA.bcatname }} </td>
                                 <td>
                                     {{ SearchResultsA.bdistrict }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ SearchResultsA.idnbr }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ SearchResultsA.phone }} </td>
                                 <td>
                                     {{ SearchResultsA.crop1 }} </td>
@@ -140,14 +140,14 @@
                     <table class="table table-sm w-auto">
                         <thead class="thead-dark">
                             <tr>
-                                <th>FORM CODE</th>
+                                <th class="onSmall-hide">FORM CODE</th>
                                 <th>NAME</th>
-                                <th>APPLICANT CATEGORY</th>
-                                <th>BUSINESS CATEGORY</th>
+                                <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                                <th class="onSmall-hide">BUSINESS CATEGORY</th>
                                 <th>DISTRICT</th>
-                                <th>ID NUMBER</th>
-                                <th>PHONE</th>
-                                <th>COMMODITY</th>
+                                <th class="onSmall-hide">ID NUMBER</th>
+                                <th class="onSmall-hide">PHONE</th>
+                                <th class="onSmall-hide">COMMODITY</th>
                                 <th>COST</th>
                                 <th>MARKS</th>
                                 <th>SERVICE PROVIDER</th>
@@ -159,21 +159,21 @@
                         {% for all in alls %}
                         <tbody>
                             <tr>
-                                <td> <strong style="color:rgb(192, 233, 201);"> {{ all['formcode'] }}</strong>
+                                <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);"> {{ all['formcode'] }}</strong>
                                 </td>
                                 <td>
                                     {{ all['appname'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ all['appcatname'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ all['bcatname'] }} </td>
                                 <td>
                                     {{ all['bdistrict'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ all['idnbr'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ all['phone'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ all['crop1'] }} </td>
                                 <td>
                                     {{ all['totalcost'] }} </td>

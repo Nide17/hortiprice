@@ -72,15 +72,15 @@
                             <tr>
                                 <th>NO</th>
                                 <th>NAME</th>
-                                <th>APPLICANT CATEGORY</th>
-                                <th>BUSINESS CATEGORY</th>
-                                <th>PROVINCE</th>
-                                <th>DISTRICT</th>
-                                <th>SECTOR</th>
-                                <th>SEX</th>
-                                <th>PHONE</th>
+                                <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                                <th class="onSmall-hide">BUSINESS CATEGORY</th>
+                                <th class="onSmall-hide">PROVINCE</th>
+                                <th >DISTRICT</th>
+                                <th class="onSmall-hide">SECTOR</th>
+                                <th class="onSmall-hide">SEX</th>
+                                <th class="onSmall-hide">PHONE</th>
                                 <th>COMMIDITY</th>
-                                <th>LOAN</th>
+                                <th class="onSmall-hide">LOAN</th>
                                 <th>GRANT</th>
                                 <th>FINANCIAL INSTITUTION</th>
                             </tr>
@@ -94,23 +94,23 @@
                                 </td>
                                 <td>
                                     {{ notiSearchResult['nname'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notiSearchResult['appcatname'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notiSearchResult['bcatname'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notiSearchResult['province'] }} </td>
                                 <td>
                                     {{ notiSearchResult['district'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notiSearchResult['sector'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notiSearchResult['sex'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notiSearchResult['phone'] }} </td>
                                 <td>
                                     {{ notiSearchResult['commodity'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notiSearchResult['loan'] }} </td>
 
                                 <td> <strong>{{ '{0:,}'.format(notiSearchResult['granted']) }} </strong></td>
@@ -139,14 +139,14 @@
                             <tr>
                                 <th>NO</th>
                                 <th>NAME</th>
-                                <th>APPLICANT CATEGORY</th>
-                                <th>BUSINESS CATEGORY</th>
+                                <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                                <th class="onSmall-hide">BUSINESS CATEGORY</th>
                                 <th>DISTRICT</th>
-                                <th>SECTOR</th>
-                                <th>SEX</th>
-                                <th>PHONE</th>
+                                <th class="onSmall-hide">SECTOR</th>
+                                <th class="onSmall-hide">SEX</th>
+                                <th class="onSmall-hide">PHONE</th>
                                 <th>COMMIDITY</th>
-                                <th>LOAN</th>
+                                <th class="onSmall-hide">LOAN</th>
                                 <th>GRANT</th>
                                 <th>FINANCIAL INSTITUTION</th>
                             </tr>
@@ -160,21 +160,21 @@
                                 </td>
                                 <td>
                                     {{ notifiedAll['nname'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notifiedAll['appcatname'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notifiedAll['bcatname'] }} </td>
                                 <td>
                                     {{ notifiedAll['district'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notifiedAll['sector'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notifiedAll['sex'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ notifiedAll['phone'] }} </td>
                                 <td>
                                     {{ notifiedAll['commodity'] }} </td>
-                                <td>
+                                <td class="onSmall-hide">
                                     {{ '{0:,}'.format(notifiedAll['loan']) }} </td>
 
                                 <td> <strong>{{ '{0:,}'.format(notifiedAll['granted']) }} </strong></td>
