@@ -6,15 +6,22 @@
         {% include "jumbotron.html" %}
 
         <div class="row">
-            <a href="{{ url_for('admin') }}"><button style="float:right; margin-right:5px;" id="backHome" type="button" class="btn-success btn-sm">Back
-                    Home</button></a>
-            <a href="{{ url_for('all') }}"><button style="float:right; margin-right:5px;" id="backHome" type="button" class="btn-success btn-sm">Applicants
-                </button></a>
-            <a href="{{ url_for('notified') }}"><button style="float:right; margin-right:5px;" id="backHome" type="button" class="btn-success btn-sm">Notified
-                </button></a>
-            <a href="{{ url_for('posts') }}"><button style="float:right; margin-right:5px;" id="backHome" type="button" class="btn-success btn-sm">Posts
-                </button></a>
+            <div class="col-12 top-buttons">
+                <a href="{{ url_for('admin') }}"><button style="float:right; margin-right:5px;" id="backHome"
+                        type="button" class="btn-success btn-sm">Back
+                        Home</button></a>
+                <a href="{{ url_for('all') }}"><button style="float:right; margin-right:5px;" id="backHome"
+                        type="button" class="btn-success btn-sm">Applicants
+                    </button></a>
+                <a href="{{ url_for('notified') }}"><button style="float:right; margin-right:5px;" id="backHome"
+                        type="button" class="btn-success btn-sm">Notified
+                    </button></a>
+                <a href="{{ url_for('posts') }}"><button style="float:right; margin-right:5px;" id="backHome"
+                        type="button" class="btn-success btn-sm">Posts
+                    </button></a>
+            </div>
         </div>
+
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
 

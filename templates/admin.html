@@ -8,7 +8,7 @@
 
         <div class="row">
 
-            <div class="col-9">
+            <div class="col-9 col-sm-10">
                 {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
 
@@ -19,7 +19,7 @@
                 {% endif %}
                 {% endwith %}
 
-                <h3 style="text-align: center;">NEW POSTS</h3>
+                <h3 class="titles">NEW POSTS</h3>
 
                 <section class="list-group">
 
@@ -54,8 +54,8 @@
                         posts</a></button>
 
             </div>
-            <div class="col-3 post-links">
-                <h3>LINKS</h3>
+            <div class="col-3 col-sm-2 post-links">
+                <h3 class="titles">LINKS</h3>
                 <a href="{{url_for('applicant')}}"><button id="formUpdateNewAPP" type="button"
                         class="btn btn-secondary btn-sm" style="margin-left:20px;">New Applicant</button></a>
                 <br><br>
@@ -75,7 +75,7 @@
         </div>
 
         <br><br>
-        <h3 style="text-align: center;">HORTICULTURE DATABASE</h3>
+        <h3 class="titles">HORTICULTURE DATABASE</h3>
 
         <button id="tableHide" type="button" class="btn-warning"
             onclick="document.getElementById('tableData').style.display='none'">Hide the table</button>
@@ -147,7 +147,7 @@
                 style="margin-top:0px;">Click here to view more</button></a>
 
         <br><br>
-        <h3 style="text-align: center;">NOTIFIED APPLICANTS</h3>
+        <h3 class="titles">NOTIFIED APPLICANTS</h3>
 
         <button id="tableHide" type="button" class="btn-warning"
             onclick="document.getElementById('tableData1').style.display='none'">Hide the table</button>
@@ -209,7 +209,7 @@
                             </tr>
                             {% endfor %}
 
-                            <tr class="text-center table-warning font-weight-bold text-info">
+                            <tr class="text-center table-warning font-weight-bold text-info onSmall-hide">
                                 <td colspan="10">
                                     <h6>TOTAL FOR 10 PEOPLE WITH HIGHER GRANT</h6>
                                 </td>

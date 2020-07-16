@@ -7,7 +7,7 @@
 
         <div class="row">
 
-            <div class="col-sm-6">
+            <div class="col-12 col-sm-12 col-lg-6">
                 <form method="GET" action="/search" style="margin-left:0px">
                     <div class="input-group">
                         <input type="text" name="search_key" class="form-control"
@@ -21,7 +21,7 @@
                 </form>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-12 col-sm-12 col-lg-6 top-buttons">
 
                 {% if session.role == "Admin" or session.role == "Manager" %}
                 <a href="{{ url_for('admin') }}"><button style="float:right; margin-right:5px;" id="backHome"
@@ -70,7 +70,7 @@
                     <table class="table table-sm w-auto">
                         <thead class="thead-dark">
                             <tr>
-                                <th>NO</th>
+                                <th class="onSmall-hide">NO</th>
                                 <th>NAME</th>
                                 <th class="onSmall-hide">APPLICANT CATEGORY</th>
                                 <th class="onSmall-hide">BUSINESS CATEGORY</th>
@@ -89,7 +89,7 @@
                         {% for notiSearchResult in notiSearchResults %}
                         <tbody>
                             <tr>
-                                <td> <strong style="color:rgb(192, 233, 201);"> {{ notiSearchResult['notid'] }}
+                                <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);"> {{ notiSearchResult['notid'] }}
                                     </strong>
                                 </td>
                                 <td>
@@ -137,7 +137,7 @@
                     <table id="tableData" class="table table-sm w-auto">
                         <thead class="thead-dark">
                             <tr>
-                                <th>NO</th>
+                                <th class="onSmall-hide">NO</th>
                                 <th>NAME</th>
                                 <th class="onSmall-hide">APPLICANT CATEGORY</th>
                                 <th class="onSmall-hide">BUSINESS CATEGORY</th>
@@ -155,7 +155,7 @@
                         {% for notifiedAll in notifiedAlls %}
                         <tbody>
                             <tr>
-                                <td> <strong style="color:rgb(192, 233, 201);"> {{ notifiedAll['notid'] }}
+                                <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);"> {{ notifiedAll['notid'] }}
                                     </strong>
                                 </td>
                                 <td>
@@ -182,7 +182,7 @@
                                     {{ notifiedAll['pfi'] }} </td>
                             </tr>
                             {% endfor %}
-                            <tr class="text-center table-warning font-weight-bold text-info">
+                            <tr class="text-center table-warning font-weight-bold text-info onSmall-hide">
                                 <td colspan="10">
                                     <h6>TOTAL GRANT</h6>
                                 </td>

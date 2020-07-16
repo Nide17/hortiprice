@@ -8,7 +8,7 @@
 
         <div class="row">
 
-            <div class="col-sm-6">
+            <div class="col-12 col-sm-12 col-lg-6">
                 <form method="GET" action="/searchAll" style="margin-left:0px">
                     <div class="input-group">
                         <input type="text" name="search_keyAll" class="form-control"
@@ -22,7 +22,7 @@
                 </form>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-12 col-sm-12 col-lg-6 top-buttons">
 
                 {% if session.role == "Admin" or session.role == "Manager" %}
                 <a href="{{ url_for('admin') }}"><button style="float:right; margin-right:5px;" id="backHome"
@@ -33,16 +33,16 @@
                         class="btn-success btn-sm">Posts</button></a>
                 <a href="{{ url_for('applicant') }}"><button style="float:right; margin-right:5px;" id="" type="button"
                         class="btn-success btn-sm">Add applicant</button></a>
-                <a href="{{ url_for('all') }}"><button style="float:right; margin-right:5px;" id="" type="button"
-                        class="btn-success btn-sm">Applicants</button></a>
+                <a href="{{ url_for('notified') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Granted</button></a>
                 <br>
                 {% else %}
                 <a href="{{url_for('posts')}}"><button style="float:right; margin-right:5px;" id="" type="button"
                         class="btn-success btn-sm">Back Home</button></a>
                 <a href="{{ url_for('homepage') }}"><button style="float:right; margin-right:5px;" id="" type="button"
                         class="btn-success btn-sm">Homepage</button></a>
-                <a href="{{ url_for('all') }}"><button style="float:right; margin-right:5px;" id="" type="button"
-                        class="btn-success btn-sm">Applicants</button></a>
+                <a href="{{ url_for('notified') }}"><button style="float:right; margin-right:5px;" id="" type="button"
+                        class="btn-success btn-sm">Granted</button></a>
                 <a href="{{ url_for('posts') }}"><button style="float:right; margin-right:5px;" id="" type="button"
                         class="btn-success btn-sm">Posts</button></a>
                 <br>
@@ -113,7 +113,12 @@
                                 {% else %}
                                 <td><b style="color:green;">{{ SearchResultsA.marks }}</b></td>
                                 {% endif %}
+
+                                {% if SearchResultsA['marks'] < 55 %}
+                                <td></td>
+                                {% else %}
                                 <td> <strong>{{ SearchResultsA.spname }}</strong></td>
+                                {% endif %}
                                 <td>
                                     <a class="edit_btn" href="/appEdit/{{ SearchResultsA.appno }}">Edit </a>
                                 </td>
@@ -159,7 +164,8 @@
                         {% for all in alls %}
                         <tbody>
                             <tr>
-                                <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);"> {{ all['formcode'] }}</strong>
+                                <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);">
+                                        {{ all['formcode'] }}</strong>
                                 </td>
                                 <td>
                                     {{ all['appname'] }} </td>
@@ -183,7 +189,13 @@
                                 {% else %}
                                 <td><b style="color:green;">{{ all['marks'] }}</b></td>
                                 {% endif %}
+
+                                {% if all['marks'] < 55 %}
+                                <td></td>
+                                {% else %}
                                 <td> <strong>{{ all['spname'] }}</strong></td>
+                                {% endif %}
+
                                 <td>
                                     <a class="edit_btn" href="/appEdit/{{ all['appno'] }}">Edit </a>
                                 </td>
