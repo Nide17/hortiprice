@@ -25,7 +25,7 @@ importlib-metadata==1.6.0
 inflect==4.1.0
 isort==4.3.21
 itsdangerous==1.1.0
-Jinja2==2.10.3
+Jinja2==2.11.3
 jinja2-base64-filters==0.1.4
 keyring==21.2.0
 lazy-object-proxy==1.4.3
